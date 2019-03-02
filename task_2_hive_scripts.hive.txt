@@ -1,0 +1,10 @@
+create database advanced_task
+
+set hive.exec.dynamic.partition.mode=nonstrict
+
+CREATE EXTERNAL TABLE advanced_task.day_10 (DATA1 DATE, NAME1 STRING, DATA2 DATE, DATA3 DATE, DOUBLE1 DOUBLE, DOUBLE2 DOUBLE, INT1 INT, NAME2 STRING, DOUBLE3 DOUBLE) 
+PARTITIONED BY(year INT, month INT, day INT) 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY '|' 
+STORED AS TEXTFILE 
+LOCATION "/user/cloudera/day_10/STEP3/"

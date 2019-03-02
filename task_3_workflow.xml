@@ -1,0 +1,18 @@
+<workflow-app name="My Workflow" xmlns="uri:oozie:workflow:0.5">
+    <start to="shell_job"/>
+    <kill name="Kill">
+        <message>Action failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+    </kill>
+    <action name="shell_job">
+        <shell xmlns="uri:oozie:shell-action:0.1">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <exec>/user/day_10_oozie/coordinator1/workflow/run_cleanup.sh</exec>
+            <file>/user/day_10_oozie/coordinator1/workflow/run_cleanup.sh#run_cleanup.sh</file>
+              <capture-output/>
+        </shell>
+        <ok to="End"/>
+        <error to="Kill"/>
+    </action>
+    <end name="End"/>
+</workflow-app>
